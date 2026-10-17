@@ -1,0 +1,881 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kalaकृति</title>
+  <meta name="description"
+    content="Structural page architecture and layout in Night Grain aesthetic with Instrument Sans & Geist Mono.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@300;400;500;600;700&family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=Noto+Sans+Devanagari:wght@400;500;600;700;800;900&display=swap">
+  <!-- anim-kit companion stylesheet: masks, tokens, resting states -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@cosmictraveler002/anim-kit@1.4.0/dist/styles/anim-kit.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="show-dimensions">
+
+  <!-- ========================================================================
+       DIMENSION / BLUEPRINT INSPECTOR CONTROLLER
+       ======================================================================== -->
+  <div class="dim-controller active" id="dimToggle" title="Click to toggle dimension badges">
+    <span class="dot"></span>
+    <span class="dim-label">Dimensions: ON</span>
+  </div>
+
+  <!-- ========================================================================
+       1. TOP NAVIGATION BAR (nav: border-b !p-4 lg:!px-8)
+       ======================================================================== -->
+  <nav class="site-nav" id="topNav" data-nav>
+    <span class="dim-badge">nav | h: 56px | w: 100% | p: 16px (lg: 32px)</span>
+    <div class="nav-logo-box" aria-label="Brand Logo Container">
+      <span class="dim-badge" style="top:-20px">w: 80px | h: 16px</span>
+      [ LOGO ]
+    </div>
+    <div class="nav-menu-toggle" id="openMenuBtn" role="button" aria-label="Open Navigation Menu" data-menu-open>
+      <div class="menu-icon-bars">
+        <span></span>
+        <span></span>
+      </div>
+      <span>MENU</span>
+    </div>
+  </nav>
+
+  <!-- ========================================================================
+       FULLSCREEN NAVIGATION DRAWER / OVERLAY (div.menu-overlay)
+       anim-kit curtain menu overlay: clip-path polygon expands from bottom edge.
+       ======================================================================== -->
+  <div class="menu-overlay" id="menuOverlay" aria-modal="true" role="dialog" data-menu>
+    <span class="dim-badge">overlay | 100vw × 100svh | z: 9999</span>
+    <div class="menu-overlay-bar" data-menu-chrome>
+      <div class="nav-logo-box">[ LOGO ]</div>
+      <button class="menu-toggle-close" id="closeMenuBtn" aria-label="Close Menu" data-menu-close>✕</button>
+    </div>
+
+    <div class="menu-links-container menu-links">
+      <div class="menu-link">
+        <a href="#hero" data-scroll-to="#hero">
+          <span class="item-num">01</span>
+          <span class="item-title">[ Nav Item: Home ]</span>
+        </a>
+      </div>
+      <div class="menu-link">
+        <a href="#hero" data-scroll-to="#hero">
+          <span class="item-num">02</span>
+          <span class="item-title">[ Nav Item: About ]</span>
+        </a>
+      </div>
+      <div class="menu-link">
+        <a href="#services" data-scroll-to="#services">
+          <span class="item-num">03</span>
+          <span class="item-title">[ Nav Item: Services ]</span>
+        </a>
+      </div>
+      <div class="menu-link">
+        <a href="#work" data-scroll-to="#work">
+          <span class="item-num">04</span>
+          <span class="item-title">[ Nav Item: Work ]</span>
+        </a>
+      </div>
+      <div class="menu-link">
+        <a href="#footer" data-scroll-to="#footer">
+          <span class="item-num">05</span>
+          <span class="item-title">[ Nav Item: Contact ]</span>
+        </a>
+      </div>
+      <div class="menu-link">
+        <a href="#footer" data-scroll-to="#footer">
+          <span class="item-num">06</span>
+          <span class="item-title">[ Nav Item: Career ]</span>
+        </a>
+      </div>
+      <div class="menu-link">
+        <a href="#clients" data-scroll-to="#clients">
+          <span class="item-num">07</span>
+          <span class="item-title">[ Nav Item: Design News ]</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="menu-footer" data-menu-chrome>
+      <div class="showreel-link" data-scroll-to="#showreel" role="button" style="cursor: pointer;">[ Action: Showreel ]</div>
+      <div class="socials">
+        <span>[ Social: Instagram ]</span>
+        <span>[ Social: LinkedIn ]</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       FLOATING WIDGETS (Audio Equalizer + Theme Toggle) (bottom-3 right-3)
+       ======================================================================== -->
+  <div class="floating-widgets-bar">
+    <button class="audio-equalizer-btn" id="audioBtn" aria-label="Toggle Sound Equalizer">
+      <div class="equalizer-bars-container">
+        <div class="eq-bar"></div>
+        <div class="eq-bar"></div>
+        <div class="eq-bar"></div>
+        <div class="eq-bar"></div>
+        <div class="eq-bar"></div>
+      </div>
+      <span style="font-size: 11px; font-family: ui-monospace, monospace;">SOUND</span>
+    </button>
+    <button class="theme-toggle-btn" aria-label="Theme Controller">
+      <span style="font-size: 14px;">☼</span>
+    </button>
+  </div>
+
+  <!-- ========================================================================
+       MAIN WRAPPER (w-screen space-y-[60px] overflow-x-clip lg:space-y-[260px])
+       ======================================================================== -->
+  <main class="main-content">
+
+    <!-- ====================================================================
+         SECTION 1: HERO CONTAINER (space-y-[160px] lg:space-y-[260px])
+         ==================================================================== -->
+    <section class="hero-block" id="hero">
+      <span class="dim-badge">hero-block | w: 100% | gap: 80px (lg: 160px)</span>
+
+      <!-- Sub-Bar 1.1: Desktop Descriptor Header Bar -->
+      <header class="hero-header-bar">
+        <span class="dim-badge">hero-header | hidden lg:flex | gap: 40px</span>
+        <div class="hero-header-left">
+          <div class="nav-logo-box">[ LOGO ]</div>
+          <div class="hero-nav-col">
+            <span class="col-item">[ Studio Descriptor ]</span>
+            <span>[ Category: News ]</span>
+          </div>
+        </div>
+        <div class="hero-header-right">
+          <div class="hero-nav-col">
+            <a href="#menu" data-menu-open style="color: inherit; text-decoration: none; cursor: pointer; font-weight: 600;">[
+              Menu ☰ ]</a>
+            <a href="#work" data-scroll-to="#work" style="color: inherit; text-decoration: none; cursor: pointer;">[
+              Link: Work ]</a>
+            <a href="#hero" data-scroll-to="#hero" style="color: inherit; text-decoration: none; cursor: pointer;">[
+              Link: About ]</a>
+            <a href="#services" data-scroll-to="#services"
+              style="color: inherit; text-decoration: none; cursor: pointer;">[ Link: Services ]</a>
+          </div>
+          <div class="hero-nav-col">
+            <span>[ Social: Instagram ]</span>
+            <span>[ Social: LinkedIn ]</span>
+          </div>
+          <button class="cta-button" data-scroll-to="#footer" style="cursor: pointer;">
+            <span>[ CTA: Let's Talk ]</span>
+            <span>→</span>
+          </button>
+        </div>
+      </header>
+
+      <!-- Sub-Bar 1.2: Massive Hero Display Title (1306 x 305 Aspect Ratio) with Individual Letter Boxes for Independent Character Animation -->
+      <div class="hero-display-title-container">
+        <div class="hero-display-wireframe-frame title-card-frame" id="titleCardFrame">
+          
+          <div class="title-letters-track" id="titleLettersTrack" aria-label="Kalaकृति Wordmark">
+            <!-- Letter 1: K (Inter ExtraBold) -->
+            <div class="title-letter-box" data-char="K" data-index="0" id="letterBox-K" style="--char-index: 0; --char-ratio: 148;" role="button" tabindex="0" aria-label="Letter K box">
+              <div class="letter-inner" id="letterInner-K">
+                <svg class="letter-svg" viewBox="40 20 148 245" width="100%" height="100%" aria-hidden="true">
+                  <text class="svg-anim-path char-glyph" x="114" y="215">K</text>
+                </svg>
+              </div>
+            </div>
+
+            <!-- Letter 2: a (Inter ExtraBold) -->
+            <div class="title-letter-box" data-char="a" data-index="1" id="letterBox-a1" style="--char-index: 1; --char-ratio: 119; margin-left: -1.2vw;" role="button" tabindex="0" aria-label="Letter a box">
+            
+              <div class="letter-inner" id="letterInner-a1">
+                <svg class="letter-svg" viewBox="31 20 119 245" width="100%" height="100%" aria-hidden="true">
+                  <text class="svg-anim-path char-glyph" x="90.5" y="215">a</text>
+                </svg>
+              </div>
+            </div>
+
+            <!-- Letter 3: l (Inter ExtraBold) -->
+            <div class="title-letter-box" data-char="l" data-index="2" id="letterBox-l" style="--char-index: 2; --char-ratio: 59; margin-left: -0.6vw;" role="button" tabindex="0" aria-label="Letter l box">
+            
+              <div class="letter-inner" id="letterInner-l">
+                <svg class="letter-svg" viewBox="22 20 59 245" width="100%" height="100%" aria-hidden="true">
+                  <text class="svg-anim-path char-glyph" x="51.5" y="215">l</text>
+                </svg>
+              </div>
+            </div>
+
+            <!-- Letter 4: a (Inter ExtraBold) -->
+            <div class="title-letter-box" data-char="a" data-index="3" id="letterBox-a2" style="--char-index: 3; --char-ratio: 119; margin-left: -0.6vw;" role="button" tabindex="0" aria-label="Letter a box">
+              
+              <div class="letter-inner" id="letterInner-a2">
+                <svg class="letter-svg" viewBox="30 20 119 245" width="100%" height="100%" aria-hidden="true">
+                  <text class="svg-anim-path char-glyph" x="89.5" y="215">a</text>
+                </svg>
+              </div>
+            </div>
+
+            <!-- Letter 5: कृ (Noto Sans Devanagari ExtraBold) -->
+            <div class="title-letter-box" data-char="कृ" data-index="4" id="letterBox-kri" style="--char-index: 4; --char-ratio: 174; margin-left: -0.8vw;" role="button" tabindex="0" aria-label="Letter कृ box">
+           
+              <div class="letter-inner" id="letterInner-kri">
+                <svg class="letter-svg" viewBox="54 20 174 245" width="100%" height="100%" aria-hidden="true">
+                  <text class="svg-anim-path char-glyph" x="141" y="215">कृ</text>
+                </svg>
+              </div>
+            </div>
+
+            <!-- Letter 6: ति (Noto Sans Devanagari ExtraBold) -->
+            <div class="title-letter-box" data-char="ति" data-index="5" id="letterBox-ti" style="--char-index: 5; --char-ratio: 192; margin-left: -0.8vw;" role="button" tabindex="0" aria-label="Letter ति box">
+            
+              <div class="letter-inner" id="letterInner-ti">
+                <svg class="letter-svg" viewBox="74 20 192 245" width="100%" height="100%" aria-hidden="true">
+                  <text class="svg-anim-path char-glyph" x="170" y="215">ति</text>
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Interactive Title Animation Tester Toolbar (Unobtrusive blueprint controller), I have removed this, dont add it anymore!!! -->
+
+      <!-- Sub-Bar 1.3: Subtitle / Descriptor Line Bar -->
+      <div class="hero-subtitle-bar">
+        <div class="hero-subtitle-left">
+          <div class="descriptor-block">
+            <div class="skeleton-line" style="width: 140px;"></div>
+            <div class="skeleton-line" style="width: 110px;"></div>
+          </div>
+          <div class="descriptor-block">
+            <div class="skeleton-line" style="width: 160px;"></div>
+            <div class="skeleton-line" style="width: 130px;"></div>
+          </div>
+        </div>
+        <div class="scroll-indicator-arrow" id="scrollIndicator" role="button" tabindex="0"
+          aria-label="Scroll down indicator" style="cursor: pointer;" data-scroll-to="#work">↓</div>
+      </div>
+
+      <!-- Sub-Bar 1.4: Showreel Section with Hero Media Shrink & Cursor Follower -->
+      <div class="cursor-tag" data-cursor>▶ Play Showreel</div>
+      <div class="showreel-section">
+        <div class="showreel-zone" data-showreel id="showreel">
+          <div class="hero-media showreel-media-wrapper wireframe-box" data-hero-media>
+<!--I removed some spans from here don't add them back-->
+            <video class="showreel-video" src="kalakritico.mp4" autoplay loop muted playsinline></video>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         SECTION 2: WORK / PROJECTS SHOWCASE
+         (Desktop: Horizontal Pin Scroll w-[400%], Mobile: Vertical Stack)
+         ==================================================================== -->
+    <!-- DESKTOP VIEW: Horizontal Slider Track -->
+    <section class="showcase-section-desktop" id="work" aria-label="Featured Projects Showcase Desktop" data-hsection>
+      <span class="dim-badge">showcase-desktop | pinned horizontal gallery | height: 100vh</span>
+      <div class="showcase-horizontal-track h-track" id="horizontalTrack" data-htrack>
+
+        <!-- Slide 1: Pure Vessel -->
+        <article class="project-card-desktop h-panel">
+          <span class="dim-badge">card-01 [PURE VESSEL] | 2025 | w: 100vw (max 1240px)</span>
+          <div class="project-media-placeholder">
+            <img class="project-media-img" data-speed-img src="assets/projects/purevessel.png" alt="Pure Vessel — Vacuum-Insulated Thermal Vessel Hero Showcase" loading="lazy">
+          </div>
+          <div class="project-meta-bottom-bar">
+            <div class="project-meta-top-row">
+              <span class="project-year-badge">2025</span>
+              <span class="project-meta-category">HEALTH AND WELLNESS</span>
+              <span class="project-meta-service">BRAND AND PACKAGING</span>
+            </div>
+            <div class="project-title-action-row">
+              <h3 class="project-card-title">PURE VESSEL</h3>
+              <a href="https://purevessel.vercel.app/" target="_blank" rel="noopener noreferrer" class="project-arrow-btn" aria-label="Open Pure Vessel website in a new tab" title="Open Pure Vessel in new tab">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <line x1="7" y1="17" x2="17" y2="7"></line>
+                  <polyline points="7 7 17 7 17 17"></polyline>
+                </svg>
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Slide 2: The Styles -->
+        <article class="project-card-desktop h-panel">
+          <span class="dim-badge">card-02 [THE STYLES] | 2025 | w: 100vw (max 1240px)</span>
+          <div class="project-media-placeholder">
+            <img class="project-media-img" data-speed-img src="assets/projects/stylesco.png" alt="The Styles — Premium Grooming Atelier Hero Showcase" loading="lazy">
+          </div>
+          <div class="project-meta-bottom-bar">
+            <div class="project-meta-top-row">
+              <span class="project-year-badge">2025</span>
+              <span class="project-meta-category">LIFESTYLE &amp; ATELIER</span>
+              <span class="project-meta-service">E-COMMERCE &amp; IDENTITY</span>
+            </div>
+            <div class="project-title-action-row">
+              <h3 class="project-card-title">THE STYLES</h3>
+              <a href="https://stylesco.netlify.app/" target="_blank" rel="noopener noreferrer" class="project-arrow-btn" aria-label="Open The Styles website in a new tab" title="Open The Styles in new tab">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <line x1="7" y1="17" x2="17" y2="7"></line>
+                  <polyline points="7 7 17 7 17 17"></polyline>
+                </svg>
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Slide 3: Ink Card -->
+        <article class="project-card-desktop h-panel">
+          <span class="dim-badge">card-03 [INK CARD] | 2024 | w: 100vw (max 1240px)</span>
+          <div class="project-media-placeholder">
+            <img class="project-media-img" data-speed-img src="assets/projects/inkcard.png" alt="Ink Card — High Art & Custom Tattoo Atelier Hero Showcase" loading="lazy">
+          </div>
+          <div class="project-meta-bottom-bar">
+            <div class="project-meta-top-row">
+              <span class="project-year-badge">2024</span>
+              <span class="project-meta-category">DIGITAL CRAFT &amp; ART</span>
+              <span class="project-meta-service">WEB EXPERIENCE &amp; ATELIER</span>
+            </div>
+            <div class="project-title-action-row">
+              <h3 class="project-card-title">INK CARD</h3>
+              <a href="https://inkcard.netlify.app/" target="_blank" rel="noopener noreferrer" class="project-arrow-btn" aria-label="Open Ink Card website in a new tab" title="Open Ink Card in new tab">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <line x1="7" y1="17" x2="17" y2="7"></line>
+                  <polyline points="7 7 17 7 17 17"></polyline>
+                </svg>
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Slide 4: Meet Me Cafe -->
+        <article class="project-card-desktop h-panel">
+          <span class="dim-badge">card-04 [MEET ME CAFE] | 2025 | w: 100vw (max 1240px)</span>
+          <div class="project-media-placeholder">
+            <img class="project-media-img" data-speed-img src="assets/projects/meetmecafe.png" alt="Meet Me Cafe & Restaurant Hero Showcase" loading="lazy">
+          </div>
+          <div class="project-meta-bottom-bar">
+            <div class="project-meta-top-row">
+              <span class="project-year-badge">2025</span>
+              <span class="project-meta-category">HOSPITALITY &amp; F&amp;B</span>
+              <span class="project-meta-service">BRANDING &amp; INTERACTION</span>
+            </div>
+            <div class="project-title-action-row">
+              <h3 class="project-card-title">MEET ME CAFE</h3>
+              <a href="https://meetmecafe.vercel.app/" target="_blank" rel="noopener noreferrer" class="project-arrow-btn" aria-label="Open Meet Me Cafe website in a new tab" title="Open Meet Me Cafe in new tab">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <line x1="7" y1="17" x2="17" y2="7"></line>
+                  <polyline points="7 7 17 7 17 17"></polyline>
+                </svg>
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Slide 5: Tottoro -->
+        <article class="project-card-desktop h-panel">
+          <span class="dim-badge">card-05 [TOTTORO] | 2025 | w: 100vw (max 1240px)</span>
+          <div class="project-media-placeholder">
+            <img class="project-media-img" data-speed-img src="assets/projects/tottoro.png" alt="Tottoro — Interactive Spirit Experience Hero Showcase" loading="lazy">
+          </div>
+          <div class="project-meta-bottom-bar">
+            <div class="project-meta-top-row">
+              <span class="project-year-badge">2025</span>
+              <span class="project-meta-category">CREATIVE DIRECTION</span>
+              <span class="project-meta-service">3D &amp; INTERACTIVE EXPERIENCE</span>
+            </div>
+            <div class="project-title-action-row">
+              <h3 class="project-card-title">TOTTORO</h3>
+              <a href="https://tottoro.netlify.app/" target="_blank" rel="noopener noreferrer" class="project-arrow-btn" aria-label="Open Tottoro website in a new tab" title="Open Tottoro in new tab">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <line x1="7" y1="17" x2="17" y2="7"></line>
+                  <polyline points="7 7 17 7 17 17"></polyline>
+                </svg>
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Slide 6: End Narrative Panel -->
+        <div class="showcase-end-panel h-panel">
+          <span class="dim-badge">end-panel | w: 100vw (max 1240px) | h: 100%</span>
+          <div class="showcase-end-panel-top">
+            <h2 style="font-size: clamp(48px, 6vw, 96px); font-weight: 500; letter-spacing: -0.04em;">[ Projects ]</h2>
+            <button class="cta-button" style="border-radius: 9999px;">[ View Archive → ]</button>
+          </div>
+          <div class="showcase-end-panel-bottom">
+            [ Structural Narrative Statement Block: Stories of Clients, Work & Impact ]
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- MOBILE VIEW: Stacked Project Cards (lg:hidden) -->
+    <section class="showcase-section-mobile" aria-label="Featured Projects Showcase Mobile">
+      <span class="dim-badge">showcase-mobile | flex-col stack | 5 projects</span>
+
+      <!-- Mobile Project 1: Pure Vessel -->
+      <article class="project-card-mobile">
+        <div class="project-media-placeholder">
+          <img class="project-media-img" src="assets/projects/purevessel.png" alt="Pure Vessel — Vacuum-Insulated Thermal Vessel Hero Showcase" loading="lazy">
+        </div>
+        <div class="project-meta-bottom-bar">
+          <div class="project-meta-top-row">
+            <span class="project-year-badge">2025</span>
+            <span class="project-meta-category">HEALTH AND WELLNESS</span>
+            <span class="project-meta-service">BRAND &amp; PACKAGING</span>
+          </div>
+          <div class="project-title-action-row">
+            <h3 class="project-card-title">PURE VESSEL</h3>
+            <a href="https://purevessel.vercel.app/" target="_blank" rel="noopener noreferrer" class="project-arrow-btn" aria-label="Open Pure Vessel website in a new tab">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <line x1="7" y1="17" x2="17" y2="7"></line>
+                <polyline points="7 7 17 7 17 17"></polyline>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Mobile Project 2: The Styles -->
+      <article class="project-card-mobile">
+        <div class="project-media-placeholder">
+          <img class="project-media-img" src="assets/projects/stylesco.png" alt="The Styles — Premium Grooming Atelier Hero Showcase" loading="lazy">
+        </div>
+        <div class="project-meta-bottom-bar">
+          <div class="project-meta-top-row">
+            <span class="project-year-badge">2025</span>
+            <span class="project-meta-category">LIFESTYLE &amp; ATELIER</span>
+            <span class="project-meta-service">E-COMMERCE &amp; IDENTITY</span>
+          </div>
+          <div class="project-title-action-row">
+            <h3 class="project-card-title">THE STYLES</h3>
+            <a href="https://stylesco.netlify.app/" target="_blank" rel="noopener noreferrer" class="project-arrow-btn" aria-label="Open The Styles website in a new tab">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <line x1="7" y1="17" x2="17" y2="7"></line>
+                <polyline points="7 7 17 7 17 17"></polyline>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Mobile Project 3: Ink Card -->
+      <article class="project-card-mobile">
+        <div class="project-media-placeholder">
+          <img class="project-media-img" src="assets/projects/inkcard.png" alt="Ink Card — High Art & Custom Tattoo Atelier Hero Showcase" loading="lazy">
+        </div>
+        <div class="project-meta-bottom-bar">
+          <div class="project-meta-top-row">
+            <span class="project-year-badge">2024</span>
+            <span class="project-meta-category">DIGITAL CRAFT &amp; ART</span>
+            <span class="project-meta-service">WEB EXPERIENCE</span>
+          </div>
+          <div class="project-title-action-row">
+            <h3 class="project-card-title">INK CARD</h3>
+            <a href="https://inkcard.netlify.app/" target="_blank" rel="noopener noreferrer" class="project-arrow-btn" aria-label="Open Ink Card website in a new tab">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <line x1="7" y1="17" x2="17" y2="7"></line>
+                <polyline points="7 7 17 7 17 17"></polyline>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Mobile Project 4: Meet Me Cafe -->
+      <article class="project-card-mobile">
+        <div class="project-media-placeholder">
+          <img class="project-media-img" src="assets/projects/meetmecafe.png" alt="Meet Me Cafe & Restaurant Hero Showcase" loading="lazy">
+        </div>
+        <div class="project-meta-bottom-bar">
+          <div class="project-meta-top-row">
+            <span class="project-year-badge">2025</span>
+            <span class="project-meta-category">HOSPITALITY &amp; F&amp;B</span>
+            <span class="project-meta-service">BRANDING &amp; INTERACTION</span>
+          </div>
+          <div class="project-title-action-row">
+            <h3 class="project-card-title">MEET ME CAFE</h3>
+            <a href="https://meetmecafe.vercel.app/" target="_blank" rel="noopener noreferrer" class="project-arrow-btn" aria-label="Open Meet Me Cafe website in a new tab">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <line x1="7" y1="17" x2="17" y2="7"></line>
+                <polyline points="7 7 17 7 17 17"></polyline>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Mobile Project 5: Tottoro -->
+      <article class="project-card-mobile">
+        <div class="project-media-placeholder">
+          <img class="project-media-img" src="assets/projects/tottoro.png" alt="Tottoro — Interactive Spirit Experience Hero Showcase" loading="lazy">
+        </div>
+        <div class="project-meta-bottom-bar">
+          <div class="project-meta-top-row">
+            <span class="project-year-badge">2025</span>
+            <span class="project-meta-category">CREATIVE DIRECTION</span>
+            <span class="project-meta-service">3D &amp; INTERACTIVE</span>
+          </div>
+          <div class="project-title-action-row">
+            <h3 class="project-card-title">TOTTORO</h3>
+            <a href="https://tottoro.netlify.app/" target="_blank" rel="noopener noreferrer" class="project-arrow-btn" aria-label="Open Tottoro website in a new tab">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <line x1="7" y1="17" x2="17" y2="7"></line>
+                <polyline points="7 7 17 7 17 17"></polyline>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <!-- ====================================================================
+         SECTION 3: SERVICES & PHILOSOPHY SECTION
+         (space-y-[30vh] px-4 lg:space-y-0 lg:px-8)
+         ==================================================================== -->
+    <section class="services-section" id="services">
+      <span class="dim-badge">services-section | px: 16px (lg: 32px)</span>
+
+      <!-- Services Header Row -->
+      <div class="services-header-row">
+        <div>
+          <h2 class="services-heading">[ Section Title: Services We Provide ]</h2>
+          <div
+            style="margin-top: 32px; display: inline-flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 500;">
+            <span>[ Action: Learn More ]</span>
+            <span>→</span>
+          </div>
+        </div>
+        <div class="services-summary-col">
+          <span style="font-weight: 600; font-family: ui-monospace, monospace;">[04] Summary:</span>
+          <ul class="services-summary-list">
+            <li>• [ Service Discipline 01 ]</li>
+            <li>• [ Service Discipline 02 ]</li>
+            <li>• [ Service Discipline 03 ]</li>
+            <li>• [ Service Discipline 04 ]</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 4 Services Cards Grid (height: 400px each) -->
+      <div class="services-cards-grid">
+
+        <!-- Card 1 -->
+        <article class="service-card">
+          <span class="dim-badge">card-1 | h: 400px | border-radius: 24px</span>
+          <div class="service-icon-box wireframe-box">
+            <span style="font-size: 10px; color: var(--muted-foreground);">[ ICON ]</span>
+          </div>
+          <div class="service-body-box">
+            <h3 class="service-card-title">[ Service 01 Title ]</h3>
+            <div class="skeleton-line" style="width: 90%;"></div>
+            <div class="skeleton-line" style="width: 75%;"></div>
+          </div>
+        </article>
+
+        <!-- Card 2 -->
+        <article class="service-card">
+          <span class="dim-badge">card-2 | h: 400px | border-radius: 24px</span>
+          <div class="service-icon-box wireframe-box">
+            <span style="font-size: 10px; color: var(--muted-foreground);">[ ICON ]</span>
+          </div>
+          <div class="service-body-box">
+            <h3 class="service-card-title">[ Service 02 Title ]</h3>
+            <div class="skeleton-line" style="width: 95%;"></div>
+            <div class="skeleton-line" style="width: 80%;"></div>
+          </div>
+        </article>
+
+        <!-- Card 3 -->
+        <article class="service-card">
+          <span class="dim-badge">card-3 | h: 400px | border-radius: 24px</span>
+          <div class="service-icon-box wireframe-box">
+            <span style="font-size: 10px; color: var(--muted-foreground);">[ ICON ]</span>
+          </div>
+          <div class="service-body-box">
+            <h3 class="service-card-title">[ Service 03 Title ]</h3>
+            <div class="skeleton-line" style="width: 90%;"></div>
+            <div class="skeleton-line" style="width: 70%;"></div>
+          </div>
+        </article>
+
+        <!-- Card 4 -->
+        <article class="service-card">
+          <span class="dim-badge">card-4 | h: 400px | border-radius: 24px</span>
+          <div class="service-icon-box wireframe-box">
+            <span style="font-size: 10px; color: var(--muted-foreground);">[ ICON ]</span>
+          </div>
+          <div class="service-body-box">
+            <h3 class="service-card-title">[ Service 04 Title ]</h3>
+            <div class="skeleton-line" style="width: 95%;"></div>
+            <div class="skeleton-line" style="width: 65%;"></div>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         SECTION 4: EXPLORE COLLABORATIONS (with Sticky Floating Preview Card)
+         ==================================================================== -->
+    <section class="collaborations-section" id="collaborations">
+      <span class="dim-badge">collaborations | px: 16px (lg: 32px)</span>
+
+      <div class="collaborations-header">
+        [ Section Title: Explore Collaborations ]
+      </div>
+
+      <!-- Sticky Floating Preview Canvas Anchor (sticky top-[35%]) -->
+      <div class="floating-preview-sticky-anchor">
+        <div class="floating-preview-card wireframe-box" id="floatingPreview">
+          <span class="dim-badge" style="top:2px; left:2px">sticky | 220×260</span>
+          <span style="font-size: 11px; color: var(--muted-foreground); text-align: center;">
+            [ FLOATING STICKY PREVIEW CARD ]
+          </span>
+        </div>
+      </div>
+
+      <!-- Collaborations Archive List (31 Client/Collaborator Rows) -->
+      <div class="collaborations-list">
+        <div class="archive-item"><span class="archive-item-text">[ Collaborator / Client 01 ]</span></div>
+        <div class="archive-item"><span class="archive-item-text">[ Collaborator / Client 02 ]</span></div>
+        <div class="archive-item"><span class="archive-item-text">[ Collaborator / Client 03 ]</span></div>
+        <div class="archive-item"><span class="archive-item-text">[ Collaborator / Client 04 ]</span></div>
+        <div class="archive-item"><span class="archive-item-text">[ Collaborator / Client 05 ]</span></div>
+        <div class="archive-item"><span class="archive-item-text">[ Collaborator / Client 06 ]</span></div>
+        <div class="archive-item"><span class="archive-item-text">[ Collaborator / Client 07 ]</span></div>
+        <div class="archive-item"><span class="archive-item-text">[ Collaborator / Client 08 ]</span></div>
+        <div class="archive-item"><span class="archive-item-text">[ Collaborator / Client 09 ]</span></div>
+        <div class="archive-item"><span class="archive-item-text">[ Collaborator / Client 10 ]</span></div>
+        <div class="archive-item"><span class="archive-item-text">[ Collaborator / Client 11 ]</span></div>
+        <div class="archive-item"><span class="archive-item-text">[ Collaborator / Client 12 ]</span></div>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         SECTION 5: CLIENT LOGO TICKER MARQUEE
+         ==================================================================== -->
+    <section class="client-ticker-section" id="clients" aria-label="Client Brand Grid Marquee">
+      <span class="dim-badge">ticker-section | w: 100% | h: 64px (md: 110px)</span>
+      <div class="client-ticker-track">
+        <!-- Sequence of client logo boxes -->
+        <div class="client-logo-box">[ CLIENT LOGO 01 ]</div>
+        <div class="client-logo-box">[ CLIENT LOGO 02 ]</div>
+        <div class="client-logo-box">[ CLIENT LOGO 03 ]</div>
+        <div class="client-logo-box">[ CLIENT LOGO 04 ]</div>
+        <div class="client-logo-box">[ CLIENT LOGO 05 ]</div>
+        <div class="client-logo-box">[ CLIENT LOGO 06 ]</div>
+        <div class="client-logo-box">[ CLIENT LOGO 07 ]</div>
+        <div class="client-logo-box">[ CLIENT LOGO 08 ]</div>
+        <!-- Duplicated for seamless loop -->
+        <div class="client-logo-box">[ CLIENT LOGO 01 ]</div>
+        <div class="client-logo-box">[ CLIENT LOGO 02 ]</div>
+        <div class="client-logo-box">[ CLIENT LOGO 03 ]</div>
+        <div class="client-logo-box">[ CLIENT LOGO 04 ]</div>
+        <div class="client-logo-box">[ CLIENT LOGO 05 ]</div>
+        <div class="client-logo-box">[ CLIENT LOGO 06 ]</div>
+        <div class="client-logo-box">[ CLIENT LOGO 07 ]</div>
+        <div class="client-logo-box">[ CLIENT LOGO 08 ]</div>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         SECTION 6: STAND OUT PIN MARQUEE (h-screen w-full flex items-center)
+         ==================================================================== -->
+    <section class="standout-pin-section" id="standout" aria-label="Callout Statement Marquee Banner">
+      <span class="dim-badge">standout-pin | 100vw × 100vh | text: 16vw</span>
+      <div class="standout-marquee-text">
+        <span class="letter-block-wireframe">[ SO ]</span>
+        <span class="letter-block-wireframe">[ ARE ]</span>
+        <span class="letter-block-wireframe">[ YOU ]</span>
+        <span class="letter-block-wireframe">[ READY ]</span>
+        <span class="letter-block-wireframe">[ TO ]</span>
+        <span class="letter-block-wireframe">[ STAND ]</span>
+        <span class="letter-block-wireframe">[ OUT? ]</span>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ========================================================================
+       7. FOOTER SECTION (mb-15 lg:pt-35 relative z-20 px-4 pb-5 pt-10 lg:mb-0 lg:px-8)
+       ======================================================================== -->
+  <footer class="site-footer" id="footer">
+    <span class="dim-badge">footer | w: 100% | px: 16px (lg: 32px) | pt: 40px (lg: 100px)</span>
+
+    <!-- Top Row: Left Column (Statement & CTA) + Right Grid (Navigation) -->
+    <div class="footer-top-row">
+
+      <!-- Left Column -->
+      <div class="footer-left-col">
+        <h3 class="footer-headline">[ Heading: Design it once. Design it right ]</h3>
+        <button class="footer-cta-btn">
+          <span>[ Action: Let's Talk ]</span>
+          <span>→</span>
+        </button>
+        <div class="footer-email-box">
+          <span>[ Business Inquiries Label ]</span>
+          <a href="#">[ contact-email-placeholder@domain.com ]</a>
+        </div>
+      </div>
+
+      <!-- Right Column: 2x2 Grid -->
+      <div class="footer-right-grid">
+        <div class="footer-nav-col">
+          <span class="col-heading">[ NAV LINKS ]</span>
+          <a href="#">[ Link: Work ]</a>
+          <a href="#">[ Link: About ]</a>
+          <a href="#">[ Link: Services ]</a>
+          <a href="#">[ Link: Contact ]</a>
+          <a href="#">[ Link: Career ]</a>
+        </div>
+        <div class="footer-nav-col">
+          <span class="col-heading">[ SOCIALS ]</span>
+          <a href="#">[ Instagram → ]</a>
+          <a href="#">[ LinkedIn → ]</a>
+          <a href="#">[ X (Twitter) → ]</a>
+          <a href="#">[ Email → ]</a>
+        </div>
+        <div class="footer-nav-col">
+          <span class="col-heading">[ LOCATION ]</span>
+          <span>[ City / Region ]</span>
+          <span>[ Country, Continent ]</span>
+        </div>
+        <div class="footer-nav-col">
+          <span class="col-heading">[ LEGAL ]</span>
+          <a href="#">[ Terms & Conditions ]</a>
+          <a href="#">[ Privacy Policy ]</a>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Bottom Row: Giant Brand Emblem Wireframe Placeholder (h-24 lg:h-36 w-full) -->
+    <div class="footer-bottom-brand-emblem wireframe-box">
+      <span class="dim-badge">emblem-box | w: 100% | h: 96px (lg: 144px)</span>
+      [ GIANT FOOTER BRAND GRAPHIC EMBLEM CONTAINER ]
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+  <script type="module">
+    // Load anim-kit (standalone build includes GSAP, ScrollTrigger, and Lenis)
+    async function initAnimKit() {
+      try {
+        let animKit;
+        try {
+          animKit = await import("https://cdn.jsdelivr.net/npm/@cosmictraveler002/anim-kit@1.4.0/dist/anim-kit.standalone.js");
+        } catch (cdnErr) {
+          console.warn("CDN anim-kit load failed, falling back to local package...", cdnErr);
+          animKit = await import("./node_modules/@cosmictraveler002/anim-kit/dist/anim-kit.standalone.js");
+        }
+
+        window.animKit = animKit;
+        const { heroShrink, cursorFollower, horizontalScroll, menuOverlay, navHide } = animKit;
+
+        // 1. Hero Media Shrink effect on the showreel video box
+        // Diagonal Left-Aligned Shrink with top & bottom clearance (scrub: 1.5)
+        const destroyHero = heroShrink("[data-hero-media]", {
+          offsetY: "44vh",
+          offsetX: "0px",
+          scale: 0.23,
+          scrub: 1.5,
+          start: "top 100px",
+          end: "bottom 100px",
+        });
+
+        // 2. Cursor Follower Tag effect in the showreel zone
+        const destroyCursor = cursorFollower("[data-showreel]", {
+          follower: "[data-cursor]",
+          offset: 14,
+          spring: { mass: 0.1, stiffness: 120 },
+        });
+
+        // 3. Pinned horizontal gallery effect on the project cards
+        // A tall section pins while its inner track slides left; panel images get containerAnimation parallax
+        const destroyHorizontal = horizontalScroll("[data-htrack]", {
+          section: "[data-hsection]",
+          panelImage: "[data-speed-img]",
+          scrub: 0.5,
+          imageScrub: 0.2,
+        });
+
+        // 4. Hide-on-scroll nav effect
+        // A header that slides out of view when scrolling down and returns when scrolling up
+        const destroyNav = navHide("[data-nav]", {
+          threshold: 200,
+        });
+
+        // 5. Curtain menu overlay effect
+        // A full-screen menu that opens like a curtain: clip-path polygon expands from bottom edge
+        const menu = menuOverlay({
+          overlay: "[data-menu]",
+          openTrigger: "[data-menu-open]",
+          closeTrigger: "[data-menu-close]",
+          nav: "[data-nav]",          // slides away while the menu is open
+          duration: 1,
+          stagger: 0.1,
+        });
+
+        window.animKitMenu = menu;
+        window.animKitDestroyers = {
+          heroShrink: destroyHero,
+          cursorFollower: destroyCursor,
+          horizontalScroll: destroyHorizontal,
+          navHide: destroyNav,
+          menuOverlay: menu.destroy,
+        };
+
+        // Attach menu.close() to internal anchor clicks
+        document.querySelectorAll('[data-menu] .menu-link a, [data-menu] [data-scroll-to]').forEach((link) => {
+          link.addEventListener('click', (e) => {
+            const targetId = link.getAttribute('data-scroll-to') || link.getAttribute('href');
+            if (targetId && targetId.startsWith('#')) {
+              e.preventDefault();
+              menu.close();
+              const targetEl = document.querySelector(targetId);
+              if (targetEl) {
+                setTimeout(() => {
+                  targetEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }, 400);
+              }
+            }
+          });
+        });
+
+        // Refresh triggers to ensure pinned gallery coordinates are 100% synchronized
+        if (animKit.ScrollTrigger) {
+          animKit.ScrollTrigger.refresh();
+        }
+
+        // Video playback toggle on showreel zone click
+        const video = document.querySelector('.showreel-video');
+        const cursorTag = document.querySelector('[data-cursor]');
+        const zone = document.querySelector('[data-showreel]');
+        if (video && zone) {
+          zone.addEventListener('click', () => {
+            if (video.paused) {
+              video.play();
+              if (cursorTag) cursorTag.textContent = '❚❚ Pause Showreel';
+            } else {
+              video.pause();
+              if (cursorTag) cursorTag.textContent = '▶ Play Showreel';
+            }
+          });
+        }
+      } catch (e) {
+        console.error("Anim-kit initialization error:", e);
+      }
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initAnimKit);
+    } else {
+      initAnimKit();
+    }
+  </script>
+</body>
+
+</html>

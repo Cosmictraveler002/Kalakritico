@@ -1,0 +1,57 @@
+[
+  {
+    "id": "purevessel",
+    "url": "https://purevessel.vercel.app/",
+    "name": "Pure Vessel",
+    "defaultCategory": "HEALTH & LIFESTYLE",
+    "defaultService": "BRAND & PACKAGING",
+    "year": "2025",
+    "pageTitle": "PURE VESSEL — Built to hold more than water.",
+    "heading": "PURE VESSEL",
+    "imagePath": "assets/projects/purevessel.png"
+  },
+  {
+    "id": "stylesco",
+    "url": "https://stylesco.netlify.app/",
+    "name": "Style & Co",
+    "defaultCategory": "FASHION & APPAREL",
+    "defaultService": "E-COMMERCE & IDENTITY",
+    "year": "2025",
+    "pageTitle": "THE STYLES — Premium Grooming Atelier",
+    "heading": "MORE THAN A\nBARBER SHOP",
+    "imagePath": "assets/projects/stylesco.png"
+  },
+  {
+    "id": "inkcard",
+    "url": "https://inkcard.netlify.app/",
+    "name": "Ink Card",
+    "defaultCategory": "DIGITAL CRAFT",
+    "defaultService": "WEB EXPERIENCE",
+    "year": "2024",
+    "pageTitle": "INK CARD — High Art & Custom Tattoo Atelier",
+    "heading": "ART,\nNOT JUST\nTATTOOS.",
+    "imagePath": "assets/projects/inkcard.png"
+  },
+  {
+    "id": "meetmecafe",
+    "url": "https://meetmecafe.vercel.app/",
+    "name": "Meet Me Cafe",
+    "defaultCategory": "HOSPITALITY & F&B",
+    "defaultService": "BRANDING & INTERACTION",
+    "year": "2025",
+    "pageTitle": "Meet Me | Cafe & Restaurant • Kalyani",
+    "heading": "Where Flavors Meet\nGood Times",
+    "imagePath": "assets/projects/meetmecafe.png"
+  },
+  {
+    "id": "tottoro",
+    "url": "https://tottoro.netlify.app/",
+    "name": "Tottoro",
+    "defaultCategory": "CREATIVE DIRECTION",
+    "defaultService": "3D & INTERACTIVE",
+    "year": "2025",
+    "pageTitle": "Interactive Spirit Experience",
+    "heading": "Gentle giant of the forest.",
+    "imagePath": "assets/projects/tottoro.png"
+  }
+]
